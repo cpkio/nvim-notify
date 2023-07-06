@@ -58,9 +58,9 @@ function WindowAnimator:push_pending(queue)
         return
       end
       local opacity = util.pop(win_opts, "opacity")
-      if opacity then
-        notif_buf.highlights:set_opacity(opacity)
-      end
+      -- if opacity then
+      --   notif_buf.highlights:set_opacity(opacity)
+      -- end
       win_opts.noautocmd = true
       local win = util.open_win(notif_buf, false, win_opts)
       vim.fn.setwinvar(
@@ -278,7 +278,7 @@ function WindowAnimator:_apply_win_state(win, win_state)
     win_updated = true
     local notif_buf = self.notif_bufs[win]
     if notif_buf:is_valid() then
-      notif_buf.highlights:set_opacity(win_state.opacity.position)
+      -- notif_buf.highlights:set_opacity(win_state.opacity.position)
       vim.fn.setwinvar(
         win,
         "&winhl",

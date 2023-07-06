@@ -21,11 +21,11 @@ local function manual_get_hl(name)
 end
 
 local function get_hl(name)
-  local definition = vim.api.nvim_get_hl_by_name(name, true)
-  if definition[true] then
-    -- https://github.com/neovim/neovim/issues/18024
-    return manual_get_hl(name)
-  end
+  local definition = vim.api.nvim_get_hl_by_name(name, false)
+  -- if definition[true] then
+  --   -- https://github.com/neovim/neovim/issues/18024
+  --   return manual_get_hl(name)
+  -- end
   return definition
 end
 
@@ -147,39 +147,39 @@ function NotifyBufHighlights:_redefine_treesitter()
   return matches
 end
 
-function NotifyBufHighlights:set_opacity(alpha)
-  if
-    not self._treesitter_redefined
-    and vim.api.nvim_buf_get_option(self.buffer, "filetype") ~= "notify"
-  then
-    self:_redefine_treesitter()
-  end
-  self.opacity = alpha
-  local background = self._config.background_colour()
-  for group, fields in pairs(self.groups) do
-    local updated_fields = {}
-    vim.api.nvim_set_hl(0, group, updated_fields)
-    local hl_string = ""
-    if fields.foreground then
-      hl_string = "guifg=#"
-        .. string.format("%06x", util.blend(fields.foreground, background, alpha / 100))
-    end
-    if fields.background then
-      hl_string = hl_string
-        .. " guibg=#"
-        .. string.format("%06x", util.blend(fields.background, background, alpha / 100))
-    end
+-- function NotifyBufHighlights:set_opacity(alpha)
+--   if
+--     not self._treesitter_redefined
+--     and vim.api.nvim_buf_get_option(self.buffer, "filetype") ~= "notify"
+--   then
+--     self:_redefine_treesitter()
+--   end
+--   self.opacity = alpha
+--   local background = self._config.background_colour()
+--   for group, fields in pairs(self.groups) do
+--     local updated_fields = {}
+--     vim.api.nvim_set_hl(0, group, updated_fields)
+--     local hl_string = ""
+--     if fields.foreground then
+--       hl_string = "guifg=#"
+--         .. string.format("%06x", util.blend(fields.foreground, background, alpha / 100))
+--     end
+--     if fields.background then
+--       hl_string = hl_string
+--         .. " guibg=#"
+--         .. string.format("%06x", util.blend(fields.background, background, alpha / 100))
+--     end
+--
+--     if hl_string ~= "" then
+--       -- Can't use nvim_set_hl https://github.com/neovim/neovim/issues/18160
+--       vim.cmd("hi " .. group .. " " .. hl_string)
+--     end
+--   end
+-- end
 
-    if hl_string ~= "" then
-      -- Can't use nvim_set_hl https://github.com/neovim/neovim/issues/18160
-      vim.cmd("hi " .. group .. " " .. hl_string)
-    end
-  end
-end
-
-function NotifyBufHighlights:get_opacity()
-  return self.opacity
-end
+-- function NotifyBufHighlights:get_opacity()
+--   return self.opacity
+-- end
 
 ---@return NotifyBufHighlights
 return function(level, buffer, config)

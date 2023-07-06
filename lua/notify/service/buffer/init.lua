@@ -41,9 +41,9 @@ end
 function NotificationBuf:_create_highlights()
   local existing_opacity = self.highlights and self.highlights.opacity or 100
   self.highlights = NotifyBufHighlights(self._notif.level, self._buffer, self._config)
-  if existing_opacity < 100 then
-    self.highlights:set_opacity(existing_opacity)
-  end
+  -- if existing_opacity < 100 then
+  --   self.highlights:set_opacity(existing_opacity)
+  -- end
 end
 
 function NotificationBuf:open(win)
