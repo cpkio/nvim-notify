@@ -1,32 +1,36 @@
 local M = {}
 
 function M.setup()
-  vim.cmd([[
-    hi default link NotifyBackground Normal
-    hi default NotifyERRORBorder guifg=#8A1F1F
-    hi default NotifyWARNBorder guifg=#79491D
-    hi default NotifyINFOBorder guifg=#4F6752
-    hi default NotifyDEBUGBorder guifg=#8B8B8B
-    hi default NotifyTRACEBorder guifg=#4F3552
-    hi default NotifyERRORIcon guifg=#F70067
-    hi default NotifyWARNIcon guifg=#F79000
-    hi default NotifyINFOIcon guifg=#A9FF68
-    hi default NotifyDEBUGIcon guifg=#8B8B8B
-    hi default NotifyTRACEIcon guifg=#D484FF
-    hi default NotifyERRORTitle  guifg=#F70067
-    hi default NotifyWARNTitle guifg=#F79000
-    hi default NotifyINFOTitle guifg=#A9FF68
-    hi default NotifyDEBUGTitle  guifg=#8B8B8B
-    hi default NotifyTRACETitle  guifg=#D484FF
-    hi default link NotifyERRORBody Normal
-    hi default link NotifyWARNBody Normal
-    hi default link NotifyINFOBody Normal
-    hi default link NotifyDEBUGBody Normal
-    hi default link NotifyTRACEBody Normal
+  vim.cmd[[
+    highlight default link NotifyERRORBorder DiagnosticError
+    highlight default link NotifyWARNBorder  DiagnosticWarn
+    highlight default link NotifyINFOBorder  DiagnosticInfo
+    highlight default link NotifyDEBUGBorder Debug
+    highlight default link NotifyTRACEBorder DiagnosticHint
 
-    hi default link NotifyLogTime Comment
-    hi default link NotifyLogTitle Special
-  ]])
+    highlight default link NotifyERRORIcon   DiagnosticError
+    highlight default link NotifyWARNIcon    DiagnosticWarn
+    highlight default link NotifyINFOIcon    DiagnosticInfo
+    highlight default link NotifyDEBUGIcon   Debug
+    highlight default link NotifyTRACEIcon   DiagnosticHint
+
+    highlight default link NotifyERRORTitle  DiagnosticError
+    highlight default link NotifyWARNTitle   DiagnosticWarn
+    highlight default link NotifyINFOTitle   DiagnosticInfo
+    highlight default link NotifyDEBUGTitle  Debug
+    highlight default link NotifyTRACETitle  DiagnosticHint
+
+    highlight default link NotifyERRORBody   DiagnosticError
+    highlight default link NotifyWARNBody    DiagnosticWarn
+    highlight default link NotifyINFOBody    DiagnosticInfo
+    highlight default link NotifyDEBUGBody   Debug
+    highlight default link NotifyTRACEBody   DiagnosticHint
+
+    highlight default link NotifyBackground Normal
+
+    highlight default link NotifyLogTime Comment
+    highlight default link NotifyLogTitle Special
+  ]]
 end
 
 M.setup()
